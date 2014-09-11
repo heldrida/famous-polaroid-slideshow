@@ -13,6 +13,8 @@ define(function (require, exports, module) {
   var StateModifier = require('famous/modifiers/StateModifier');
   var Lightbox = require('famous/views/Lightbox');
 
+  var SlideView = require('views/SlideView');
+
   // Constructor function for our View Class
   function SlideshowView() {
   

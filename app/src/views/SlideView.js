@@ -62,11 +62,11 @@ define(function (require, exports, module) {
 
   // private helper function
   function _createFilm() {
-    
-    this.options.filmSize = this.options.size[0] - 2 * this.options.filmBorder;
-    
+
+    this.options.filmSize = this.options.size - 2 * this.options.filmBorder;
+
     var film = new Surface({
-      size: [this.options.filmeSize, this.options.filmSize],
+      size: [this.options.filmSize, this.options.filmSize],
       properties: {
         backgroundColor: '#222',
         zIndex: 1
