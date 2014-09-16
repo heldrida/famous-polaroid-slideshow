@@ -1,14 +1,12 @@
 define(function(require, exports, module) {
     var SlideData = {
-        userId: 'takazudo',
-        albumId: '5579032834644034737',
-        picasaUrl: 'https://picasaweb.google.com/data/feed/api/user/',
-        queryParams: '?alt=json&hl=en_US&access=visible&fields=entry(id,media:group(media:content,media:description,media:keywords,media:title))',
+        picasaUrl: 'https://picasaweb.google.com/data/feed/api/all',
+        queryParams: '?kind=photo&q=puppy&max-results=5&imgmax=720&alt=json',
         defaultImage: 'https://lh4.googleusercontent.com/-HbYp2q1BZfQ/U3LXxmWoy7I/AAAAAAAAAJk/VqI5bGooDaA/s1178-no/1.jpg'
     };
 
     SlideData.getUrl = function() {
-        return SlideData.picasaUrl + SlideData.userId + '/albumid/' + SlideData.albumId + SlideData.queryParams;
+        return SlideData.picasaUrl + SlideData.queryParams;
     };
 
     SlideData.parse = function(data) {

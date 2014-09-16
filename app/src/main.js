@@ -16,6 +16,7 @@ define(function(require, exports, module) {
 
     // Create context
     var mainContext = Engine.createContext();
+    mainContext.setPerspective(1000);
     
     // simple GET request to the picasa api with callback
     Utility.loadURL(SlideData.getUrl(), initApp);

@@ -12,6 +12,7 @@ define(function (require, exports, module) {
   var Transform = require('famous/core/Transform');
   var StateModifier = require('famous/modifiers/StateModifier');
   var Lightbox = require('famous/views/Lightbox');
+  var Easing = require('famous/transitions/Easing');
 
   var SlideView = require('views/SlideView');
 
@@ -40,12 +41,30 @@ define(function (require, exports, module) {
     var slide = this.slides[this.currentIndex];
     this.lightbox.show(slide);
   };
+  SlideshowView.prototype.showNextSlide = function() {
+    this.currentIndex++;
+    if (this.currentIndex === this.slides.length) {
+      this.currentIndex = 0;
+    }
+    this.showCurrentSlide();
+  };
   
   // Default options for View Class
   SlideshowView.DEFAULT_OPTIONs = {
     size: [450, 500],
     data: undefined,
-    lightboxOpts: {}
+    lightboxOpts: {
+            inTransform: Transform.rotateY(0.5),
+            inOpacity: 1,
+            inOrigin: [0, 0],
+            showOrigin: [0, 0],
+            outTransform: Transform.rotateY(-Math.PI/2),
+            outOpacity: 1,
+            outOrigin: [0, 0],
+            inTransition: { duration: 500, curve: 'linear' },
+            outTransition: { duration: 700, curve: 'linear' },
+            overlap: true
+    }
   };
   
   // lightbox instance helper function
@@ -65,6 +84,9 @@ define(function (require, exports, module) {
       });
       
       this.slides.push(slide);
+
+      // click listener
+      slide.on('click', this.showNextSlide.bind(this));
     }
     
     this.showCurrentSlide();

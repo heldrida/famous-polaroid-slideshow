@@ -58,6 +58,11 @@ define(function (require, exports, module) {
     });
     
     this.mainNode.add(background);
+
+    background.on('click', function () {
+      // the event output handler is used to broadcast outwards
+      this._eventOutput.emit('click');
+    }.bind(this));
   }
 
   // private helper function
@@ -69,7 +74,9 @@ define(function (require, exports, module) {
       size: [this.options.filmSize, this.options.filmSize],
       properties: {
         backgroundColor: '#222',
-        zIndex: 1
+        zIndex: 1,
+        // makes the surface invisible to clicks
+        pointerEvents: 'none'
       }
     });
     
@@ -90,7 +97,8 @@ define(function (require, exports, module) {
       size: [photoSize, photoSize],
       content: this.options.photoUrl,
       properties: {
-        zIndex: 2
+        zIndex: 2,
+        pointerEvents: 'none'
       }
     });
     
